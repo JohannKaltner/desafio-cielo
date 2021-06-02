@@ -1,0 +1,59 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class='container'>
+  <div class='row'>
+    <div class="jumbotron">
+      <h1 class="display-4">Lançamentos em Conta</h1>
+      <p class="lead">consulte seus lançamentos recentes na tabela abaixo.</p>
+      <hr class="my-4">
+    </div>
+    <div class='row'>
+      <div *ngIf='showAlert && !contaCliente' class="alert alert-danger" role="alert">
+        Não foi possivel recuperar os lançamentos.
+      </div>
+
+      <div *ngIf='showAlert && contaCliente' class="alert alert-info" role="alert">
+        Dados recuperados com sucesso!
+      </div>
+    </div>
+    <div class='col-12 chart-container'>
+      <div id="chart" class='' *ngIf='contaCliente'>
+        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+          [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [legend]="chartOptions.legend"
+          [fill]="chartOptions.fill" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
+          [xaxis]="chartOptions.xaxis"></apx-chart>
+      </div>
+
+    </div>
+  </div>
+  <div class="table-responsive " *ngIf='contaCliente'>
+    <table class="table table-hover ">
+      <thead>
+        <tr>
+          <th scope="col">Data do Lançamento</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Numero</th>
+          <th scope="col">Situação</th>
+          <th scope="col">Data da Confirmação</th>
+          <th scope="col">Dados Bancários</th>
+          <th scope="col">Valor Final</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let lancamento of contaCliente'>
+          <td>{{lancamento.dataEfetivaLancamento}}</td>
+          <td>{{lancamento.lancamentoContaCorrenteCliente.nomeTipoOperacao}}</td>
+          <td>{{lancamento.lancamentoContaCorrenteCliente.numeroRemessaBanco}}</td>
+          <td class='paid'
+            [ngClass]=' {"paid": lancamento.lancamentoContaCorrenteCliente.nomeSituacaoRemessa==="Pago" }'>
+            {{lancamento.lancamentoContaCorrenteCliente.nomeSituacaoRemessa}}</td>
+          <td>{{lancamento.dataLancamentoContaCorrenteCliente}}</td>
+          <td>{{lancamento.nomeBanco}}
+            {{lancamento.lancamentoContaCorrenteCliente.dadosDomicilioBancario.numeroContaCorrente}} </td>
+          <td>{{lancamento.valorLancamentoRemessa | currency:'BRL':true}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

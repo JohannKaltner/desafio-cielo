@@ -1,0 +1,55 @@
+th {
+  font-size: 17px;
+  font-weight: 300;
+}
+
+td {
+  padding: 12px 8px;
+  vertical-align: middle;
+  border-color: #ddd;
+  font-weight: 300;
+  font-size: 15px;
+  color: #3c4858;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 16px;
+  background-color: transparent;
+
+}
+
+.table>thead>tr>th {
+  padding: 12px 8px;
+  vertical-align: middle;
+  border-color: #ddd;
+  font-weight: 300;
+}
+
+.paid {
+  color: green;
+}
+
+.title {
+  color: #5a646e
+}
+
+.table-bordered {
+  border-radius: 10px !important;
+
+}
+
+.chart-container {
+  margin-top: 3rem;
+  /* border: 1px solid #ddd; */
+  border-radius: 7px;
+  padding: 15px;
+}
+
+.user-entries {
+  margin-top: 3rem;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 20px;
+}
